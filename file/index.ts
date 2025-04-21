@@ -1,12 +1,8 @@
-import { type HelloData } from './types'
-
-// 读取 JSON 文件
+import { HelloModel } from './model'
+// 测试
 let file = Bun.file('./hello.json')
-let jsonData: HelloData = await file.json()
+let jsonText = await file.text()
+let model = HelloModel.fromJSON(jsonText)
 
-console.log(jsonData)
-console.log(await file.text())
-
-// 使用结构体的字段
-console.log(`Name: ${jsonData.name}`)
-console.log(`Description: ${jsonData.description}`)
+console.log(model)
+console.log(model.toJSON())
